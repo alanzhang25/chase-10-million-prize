@@ -7,6 +7,8 @@ from selenium.common.exceptions import NoSuchElementException
 
 import time, random, logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 def random_sleep():
     time.sleep(random.uniform(2, 5))
 
@@ -63,11 +65,10 @@ submit_button.click()
 random_sleep()
 
 time.sleep(6)
-try:
-    element = driver.find_element(By.XPATH, "//*[contains(text(), 'thank you')]")
+if "Thank you" in driver.page_source:
     print("SUCCESS!")
     logging.info("SUCCESS!")
-except NoSuchElementException:
+else:
     print("failed")
     logging.info("failed")
 
