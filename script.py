@@ -2,8 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
-import time, random
+import time, random, logging
 
 def random_sleep():
     time.sleep(random.uniform(2, 5))
@@ -58,5 +60,15 @@ random_sleep()
 
 submit_button = driver.find_element("id", "submit-entry")
 submit_button.click()
+random_sleep()
+
+time.sleep(6)
+try:
+    element = driver.find_element(By.XPATH, "//*[contains(text(), 'thank you')]")
+    print("SUCCESS!")
+    logging.info("SUCCESS!")
+except NoSuchElementException:
+    print("failed")
+    logging.info("failed")
 
 time.sleep(10)
