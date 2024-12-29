@@ -14,7 +14,7 @@ def random_sleep():
 
 
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--headless")
 chrome_options.add_argument("--mute-audio")
 # chrome_options.add_argument("--disable-gpu") 
 driver = webdriver.Chrome(options=chrome_options)
